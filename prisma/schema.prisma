@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+
+  @@map("users")
+}
+
+model Planet {
+  id         Int       @id @default(autoincrement())
+  name       String    
+  mass       Float
+  hasStation Boolean
+  station    Station[]
+
+  @@map("planets")
+}
+
+model Station {
+  id       Int    @id @default(autoincrement())
+  name     String @unique
+  planetId Int
+  planet   Planet @relation(fields: [planetId], references: [id])
+
+  @@map("stations")
+}
