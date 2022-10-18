@@ -4,7 +4,7 @@ import { Context } from '../context';
 
 @Resolver()
 export class PlanetsResolver {
-	@Query(() => [Planet])
+	@Query(returns => [Planet])
 	async suitablePlanets(@Ctx() ctx: Context) {
 		const planets = await ctx.prisma.planet.findMany({})
 

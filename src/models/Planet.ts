@@ -1,8 +1,8 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType } from 'type-graphql';
 
 @ObjectType()
 export class Planet {
-    @Field()
+    @Field(type => ID)
     id: number;
     
 	@Field()
